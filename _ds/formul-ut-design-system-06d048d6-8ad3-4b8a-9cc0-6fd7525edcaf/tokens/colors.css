@@ -1,0 +1,83 @@
+/* Formul'UT — couleurs. Quatre couleurs de charte : bleu nuit, ivoire, jaune, rouge.
+   Le rouge est DÉCORATIF uniquement (filets, bandes de piste, numéros de course) — jamais un état d'erreur seul. */
+:root{
+  /* — Bleu nuit : couleur mère, dominante du site — */
+  --navy-900:#00062E;
+  --navy-800:#0A1140;
+  --navy-700:#141E52;
+  --navy-600:#222F6B;
+  --navy-500:#36457F;
+  --navy-400:#5A67A0;
+  --navy-300:#8B93B8;
+  --navy-200:#C3C8DC;
+  --navy-100:#E7E9F2;
+
+  /* — Ivoire : la respiration — */
+  --ivory:#FFFEF6;
+  --ivory-warm:#F7F5E6;
+  --ivory-shade:#EDEAD8;
+
+  /* — Jaune : accent unique, celui du logo sur fond jaune — */
+  --yellow:#F6B600;
+  --yellow-dark:#D19C00;
+  --yellow-deep:#A87D00;
+  --yellow-pale:#FFF3D0;
+
+  /* — Rouge : décor de piste — */
+  --red:#C80000;
+  --red-dark:#A50000;
+
+  /* — Transparences sur bleu nuit — */
+  --navy-a04:rgba(255,254,246,0.04);
+  --navy-a08:rgba(255,254,246,0.08);
+  --navy-a12:rgba(255,254,246,0.12);
+  --navy-a35:rgba(255,254,246,0.35);
+  --navy-a55:rgba(255,254,246,0.55);
+  --navy-a70:rgba(255,254,246,0.70);
+  /* — Transparences sur ivoire — */
+  --ink-a06:rgba(0,6,46,0.06);
+  --ink-a12:rgba(0,6,46,0.12);
+  --ink-a40:rgba(0,6,46,0.40);
+  --ink-a70:rgba(0,6,46,0.70);
+  --yellow-a15:rgba(246,182,0,0.15);
+  --yellow-a40:rgba(246,182,0,0.40);
+
+  /* ————— Alias sémantiques ————— */
+  /* Surfaces */
+  --surface-page:var(--navy-900);
+  --surface-page-alt:var(--ivory);
+  --surface-card:var(--navy-800);
+  --surface-card-raised:var(--navy-700);
+  --surface-card-light:#FFFFFF;
+  --surface-inset:var(--navy-a04);
+  --surface-accent:var(--yellow);
+  --surface-accent-soft:var(--yellow-pale);
+
+  /* Texte sur bleu nuit (contexte dominant) */
+  --text-strong:var(--ivory);
+  --text-body:var(--navy-a70);
+  --text-muted:var(--navy-300);
+  --text-accent:var(--yellow);
+
+  /* Texte sur ivoire (contexte clair) */
+  --text-strong-on-light:var(--navy-900);
+  --text-body-on-light:var(--ink-a70);
+  --text-muted-on-light:var(--ink-a40);
+
+  /* Bordures */
+  --border-hairline:var(--navy-a12);
+  --border-hairline-on-light:var(--ink-a06);
+  --border-strong:var(--navy-a35);
+  --border-accent:var(--yellow);
+
+  /* Filets décoratifs de piste */
+  --rule-red:var(--red);
+  --rule-yellow:var(--yellow);
+  --rule-hairline:var(--navy-a12);
+
+  /* Liens */
+  --link:var(--yellow);
+  --link-hover:var(--yellow-dark);
+  --link-on-light:var(--navy-700);
+  --link-on-light-hover:var(--yellow-dark);
+}

@@ -1,0 +1,40 @@
+/* Formul'UT — typographie. Hiérarchie de la charte :
+   GRAND TITRE = Ethnocentric · TITRES = Horizon · Sous-titres & textes = Montserrat SemiBold · Précisions = Montserrat Regular.
+   Ethnocentric et Horizon sont des capitales très larges : toujours en majuscules, jamais en paragraphe. */
+:root{
+  --font-display:'Ethnocentric','Arial Black',sans-serif;
+  --font-heading:'Horizon','Arial Narrow',sans-serif;
+  --font-body:'Montserrat',system-ui,sans-serif;
+  --font-mono:ui-monospace,'SFMono-Regular',Menlo,monospace;
+
+  /* Échelle */
+  --text-display-xl:clamp(2.25rem,5vw,4rem);
+  --text-display-lg:clamp(1.75rem,3.4vw,2.75rem);
+  --text-display-md:clamp(1.25rem,2.2vw,1.75rem);
+  --text-h2:clamp(1.375rem,2.4vw,2rem);
+  --text-h3:1.3125rem;
+  --text-h4:1.0625rem;
+  --text-body-lg:1.0625rem;
+  --text-body-md:0.9375rem;
+  --text-body-sm:0.875rem;
+  --text-caption:0.8125rem;
+  --text-label:0.75rem;
+  --text-micro:0.6875rem;
+
+  /* Graisses (Montserrat n'a que Regular et SemiBold) */
+  --weight-regular:400;
+  --weight-semibold:600;
+
+  /* Interlignes */
+  --leading-display:1.06;
+  --leading-tight:1.2;
+  --leading-snug:1.45;
+  --leading-body:1.7;
+
+  /* Interlettrages — Ethnocentric et Horizon sont déjà très espacés, on ne les élargit pas */
+  --tracking-display:0;
+  --tracking-heading:0.01em;
+  --tracking-body:0;
+  --tracking-label:0.14em;
+  --tracking-eyebrow:0.1em;
+}

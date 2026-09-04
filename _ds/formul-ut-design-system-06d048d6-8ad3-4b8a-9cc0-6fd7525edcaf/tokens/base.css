@@ -1,0 +1,18 @@
+/* Formul'UT — réinitialisation et défauts. Le contexte par défaut est le bleu nuit. */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-body);font-weight:var(--weight-regular);font-size:var(--text-body-md);line-height:var(--leading-body);background:var(--surface-page);color:var(--text-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:var(--weight-regular);line-height:var(--leading-tight);letter-spacing:var(--tracking-heading);color:var(--text-strong);text-transform:uppercase;text-wrap:balance}
+p{text-wrap:pretty}
+a{color:var(--link);text-decoration:none;transition:color var(--dur-fast) var(--ease-out)}
+a:hover{color:var(--link-hover)}
+img,svg,video{max-width:100%;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+::selection{background:var(--yellow);color:var(--navy-900)}
+[data-surface="light"]{background:var(--ivory);color:var(--text-body-on-light)}
+[data-surface="light"] h1,[data-surface="light"] h2,[data-surface="light"] h3,[data-surface="light"] h4{color:var(--text-strong-on-light)}
+[data-surface="light"] a{color:var(--link-on-light)}
+[data-surface="light"] a:hover{color:var(--link-on-light-hover)}
+@media (prefers-reduced-motion:reduce){*{transition-duration:1ms!important;animation-duration:1ms!important}html{scroll-behavior:auto}}

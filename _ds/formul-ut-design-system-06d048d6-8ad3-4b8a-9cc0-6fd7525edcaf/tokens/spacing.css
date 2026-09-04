@@ -1,0 +1,36 @@
+/* Formul'UT — espacements. Reprise exacte des valeurs du site existant (pas de grille 4/8 forcée). */
+:root{
+  --space-1:4px;
+  --space-2:6px;
+  --space-3:8px;
+  --space-4:10px;
+  --space-5:12px;
+  --space-6:14px;
+  --space-7:16px;
+  --space-8:20px;
+  --space-9:24px;
+  --space-10:28px;
+  --space-11:32px;
+  --space-12:40px;
+  --space-13:48px;
+  --space-14:56px;
+  --space-15:64px;
+  --space-16:72px;
+  --space-17:80px;
+  --space-18:96px;
+  --space-19:120px;
+
+  /* Rythme de page */
+  --section-y:96px;
+  --section-y-tight:80px;
+  --section-y-loose:120px;
+  --gutter:28px;
+  --max-w:1160px;
+  --measure:64ch;
+  --nav-h:72px;
+
+  /* Densités de carte */
+  --card-pad-sm:20px;
+  --card-pad-md:28px;
+  --card-pad-lg:32px;
+}
