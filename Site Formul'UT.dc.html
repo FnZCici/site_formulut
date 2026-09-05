@@ -25,6 +25,8 @@ a:hover{color:#D19C00}
   header dl,section dl{grid-template-columns:repeat(auto-fit,minmax(96px,1fr)) !important;gap:24px !important}
   /* photos très larges : moins de letterbox */
   [style*="aspect-ratio: 21 / 9"],[style*="aspect-ratio:21/9"]{aspect-ratio:16/9 !important}
+  /* cartouche de légende : compacte, elle ne couvre plus la photo */
+  figcaption{left:12px !important;right:12px !important;bottom:12px !important;padding:10px 12px !important;font-size:12px !important;line-height:1.45}
   /* iOS ne zoome plus au focus */
   input,textarea,select{font-size:16px !important}
   /* libellés longs : le bouton passe sur deux lignes au lieu de déborder */
@@ -34,6 +36,12 @@ a:hover{color:#D19C00}
   nav img{height:34px !important}
   /* cible tactile du menu */
   [data-fut-burger]{display:flex !important;align-items:center;justify-content:center;min-width:44px;min-height:44px}
+}
+/* Téléphone à l'horizontale : bandeaux de tête et barre de filtres resserrés */
+@media (orientation:landscape) and (max-height:560px){
+  :root{--text-display-xl:clamp(1.25rem,3.2vw,2rem)}
+  header{padding-top:calc(var(--nav-h) + 16px) !important;padding-bottom:24px !important}
+  div[style*="sticky"]{padding-top:8px !important;padding-bottom:8px !important}
 }
 </style>
 </helmet>
