@@ -16,6 +16,25 @@ html{scroll-behavior:smooth}
 body{margin:0;background:#00062E}
 a{color:#F6B600;text-decoration:none}
 a:hover{color:#D19C00}
+@media (max-width:760px){
+  :root{--text-display-xl:clamp(1.5rem,6.2vw,4rem);--text-micro:0.75rem}
+  /* pied de page : colonnes empilées au lieu d'une grille fixe */
+  footer > div > div:first-child{grid-template-columns:1fr !important;gap:32px !important}
+  footer li a{display:inline-block;padding:6px 0}
+  /* chiffres des bandeaux de tête : deux colonnes qui passent à la ligne */
+  header dl,section dl{grid-template-columns:repeat(auto-fit,minmax(96px,1fr)) !important;gap:24px !important}
+  /* photos très larges : moins de letterbox */
+  [style*="aspect-ratio: 21 / 9"],[style*="aspect-ratio:21/9"]{aspect-ratio:16/9 !important}
+  /* iOS ne zoome plus au focus */
+  input,textarea,select{font-size:16px !important}
+  /* libellés longs : le bouton passe sur deux lignes au lieu de déborder */
+  a[href$=".pdf"]{white-space:normal !important;text-align:center;padding-left:24px !important;padding-right:24px !important}
+  /* barre de navigation : logo et gouttières resserrés pour tenir en largeur */
+  nav > div{padding-left:16px !important;padding-right:16px !important;gap:12px !important}
+  nav img{height:34px !important}
+  /* cible tactile du menu */
+  [data-fut-burger]{display:flex !important;align-items:center;justify-content:center;min-width:44px;min-height:44px}
+}
 </style>
 </helmet>
 <div ref="{{ rootRef }}" onClick="{{ onNav }}" style="background:#00062E;min-height:100vh">
@@ -24,10 +43,10 @@ a:hover{color:#D19C00}
 
 <sc-if value="{{ isAccueil }}" hint-placeholder-val="{{ true }}">
 <div>
-<header style="position:relative;background:#FFFEF6;padding:152px 0 104px">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;text-align:center">
+<header style="position:relative;background:#FFFEF6;padding:clamp(104px,20vw,152px) 0 clamp(64px,10vw,104px)">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);text-align:center">
 <div style="display:flex;justify-content:center;margin-bottom:24px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Eyebrow" onLight="true" hint-size="380px,20px">Écurie Formula Student — UTC Compiègne</x-import></div>
-<h1 style="font-family:'Ethnocentric','Arial Black',sans-serif;font-size:clamp(2.5rem,5.4vw,4.5rem);line-height:1.06;letter-spacing:0;text-transform:uppercase;color:#00062E;margin:0">On conçoit,<br>on fabrique,<br>on court.</h1>
+<h1 style="font-family:'Ethnocentric','Arial Black',sans-serif;font-size:clamp(1.75rem,7vw,4.5rem);line-height:1.06;letter-spacing:0;text-transform:uppercase;color:#00062E;margin:0">On conçoit,<br>on fabrique,<br>on court.</h1>
 <div style="display:flex;justify-content:center;margin:32px 0"><span style="display:block;width:180px;height:3px;border-radius:9999px;background:linear-gradient(to right,#F6B600 0 55%,#C80000 55% 100%)"></span></div>
 <p style="max-width:40rem;margin:0 auto;font-family:'Montserrat',system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;color:rgba(0,6,46,0.7);text-wrap:pretty">Formul'UT est l'écurie de course des étudiants de l'UTC Compiègne. Nous concevons et fabriquons nos monoplaces pour concourir contre les autres écoles d'ingénieurs.</p>
 <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px">
@@ -35,13 +54,13 @@ a:hover{color:#D19C00}
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Button" variant="outline" size="lg" href="#monoplace" hint-size="190px,54px">La monoplace</x-import>
 </div>
 </div>
-<div style="max-width:1160px;margin:64px auto 0;padding:0 28px">
+<div style="max-width:1160px;margin:clamp(32px,6vw,64px) auto 0;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PhotoFrame" src="assets/photos/fs01-piste-pluie.jpg" alt="La FS01 en piste à Magny-Cours" ratio="21/9" badge="{{ heroBadge }}" hint-size="100%,420px"></x-import>
 </div>
 </header>
 
-<section style="background:#FFFEF6;padding:0 0 96px">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:24px">
+<section style="background:#FFFEF6;padding:0 0 clamp(56px,9vw,96px)">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:24px">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.StatCard" value="{{ n30 }}" label="Membres actifs" animate="{{ animateStats }}" onLight="true" hint-size="100%,150px"></x-import>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.StatCard" value="{{ n7 }}" label="Pôles techniques" animate="{{ animateStats }}" onLight="true" hint-size="100%,150px"></x-import>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.StatCard" value="{{ n1 }}" label="Monoplace thermique en piste" animate="{{ animateStats }}" onLight="true" hint-size="100%,150px"></x-import>
@@ -49,8 +68,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#00062E;padding:96px 0 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#00062E;padding:clamp(56px,9vw,96px) 0 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" eyebrow="Résultats" title="Formula Student Italy 2024" subtitle="Nos classements sur les épreuves statiques, sur 50 écuries engagées." hint-size="100%,190px"></x-import>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:24px">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.StatCard" value="4" suffix="/50" label="Business plan" hint-size="100%,150px"></x-import>
@@ -60,8 +79,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#00062E;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#00062E;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" eyebrow="Nos monoplaces" title="Deux voitures. Une écurie." hint-size="100%,130px"></x-import>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:24px;align-items:start">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.MonoplaceCard" name="FS01" tag="Thermique" tag-tone="thermique" tagline="Notre monoplace de course, en piste. Moteur de Honda CBR600RR, châssis tubulaire acier." photo="assets/photos/fs01-avant-gauche-soleil.png" photo-alt="La FS01 trois-quarts avant gauche" specs="{{ fs01Specs }}" action="{{ actionFs01 }}" hint-size="100%,520px"></x-import>
@@ -70,8 +89,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#FFFEF6;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#FFFEF6;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" onLight="true" align="center" eyebrow="Partenaires" title="Ils nous font confiance" hint-size="100%,140px"></x-import>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:12px">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SponsorLogoCard" onLight="true" name="Poclain Hydraulics" src="assets/partenaires/mur/poclain-hydraulics.png" hint-size="100%,96px"></x-import>
@@ -99,8 +118,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#FFFEF6;padding:0 0 96px">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;border-top:1.5px solid rgba(0,6,46,0.06);padding-top:80px">
+<section style="background:#FFFEF6;padding:0 0 clamp(56px,9vw,96px)">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);border-top:1.5px solid rgba(0,6,46,0.06);padding-top:clamp(48px,7vw,80px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" onLight="true" eyebrow="Actualités" title="L'écurie en direct" action="{{ actionActus }}" hint-size="100%,130px"></x-import>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:24px;align-items:start">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.NewsCard" onLight="true" date="Juin 2026" tag="Roulage" tag-tone="thermique" title="Roulage à Valéo" excerpt="Roulage et test de la monoplace sur l'anneau de Valéo." photo="assets/photos/equipe-valeo.jpg" photo-alt="L'équipe et la FS01 devant le siège Valéo" hint-size="100%,420px"></x-import>
@@ -112,10 +131,10 @@ a:hover{color:#D19C00}
 <section style="position:relative;background:#0A1140;overflow:hidden">
 <span style="display:block;height:3px;background:linear-gradient(to right,#F6B600 0 55%,#C80000 55% 100%)"></span>
 <span style="position:absolute;top:-160px;right:-140px;width:520px;height:520px;background:radial-gradient(circle,rgba(246,182,0,0.14) 0%,transparent 70%);pointer-events:none"></span>
-<div style="position:relative;max-width:1160px;margin:0 auto;padding:96px 28px;text-align:center">
+<div style="position:relative;max-width:1160px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,28px);text-align:center">
 <div style="max-width:40rem;margin:0 auto">
 <div style="display:flex;justify-content:center;margin-bottom:20px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Eyebrow" hint-size="160px,20px">Partenariat</x-import></div>
-<h2 style="font-family:'Ethnocentric','Arial Black',sans-serif;font-size:clamp(1.875rem,3.6vw,3rem);line-height:1.06;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Votre logo.<br>Notre piste.</h2>
+<h2 style="font-family:'Ethnocentric','Arial Black',sans-serif;font-size:clamp(1.5rem,5.5vw,3rem);line-height:1.06;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Votre logo.<br>Notre piste.</h2>
 <p style="font-family:'Montserrat',system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;color:rgba(255,254,246,0.7);margin:0 0 40px;text-wrap:pretty">Chaque euro et chaque pièce donnés partent dans la voiture. Les dons de tous les niveaux sont bienvenus — l'emplacement de votre logo sur la monoplace suit votre engagement.</p>
 <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Button" variant="primary" size="lg" href="#soutenir" hint-size="200px,54px">Nous soutenir</x-import>
@@ -131,8 +150,8 @@ a:hover{color:#D19C00}
 <div>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PageHero" eyebrow="L'association" title="Une écurie" accent="étudiante." subtitle="Créée en septembre 2019 à l'Université de Technologie de Compiègne, Formul'UT conçoit et fabrique une monoplace de course pour participer aux compétitions de Formula Student." stats="{{ statsAssoc }}" hint-size="100%,520px"></x-import>
 
-<section style="background:#FFFEF6;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:64px;align-items:center">
+<section style="background:#FFFEF6;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:center">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PhotoFrame" src="assets/photos/equipe-valeo.jpg" alt="L'équipe et la FS01 devant le siège Valéo" ratio="4/3" radius="28px" hint-size="100%,340px"></x-import>
 <div>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" onLight="true" eyebrow="La compétition" title="Qu'est-ce que la Formula Student ?" hint-size="100%,140px"></x-import>
@@ -142,8 +161,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#00062E;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#00062E;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" align="center" eyebrow="Comment on travaille" title="Tout est fait par les étudiants" hint-size="100%,140px"></x-import>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:24px;align-items:start">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.IconCard" icon="wrench" title="Conception et fabrication" hint-size="100%,240px">Aéro, châssis, motorisation, électronique, liaison au sol : toute la voiture est dessinée et fabriquée par l'équipe, à l'atelier de l'UTC.</x-import>
@@ -153,10 +172,10 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#FFFEF6;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#FFFEF6;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" onLight="true" eyebrow="Les épreuves" title="Sur quoi la voiture est notée" subtitle="Des juges issus de l'industrie automobile inspectent chaque monoplace avant de l'autoriser à rouler." hint-size="100%,190px"></x-import>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:64px;align-items:start">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:start">
 <div>
 <h3 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:1.125rem;letter-spacing:0.01em;text-transform:uppercase;color:#00062E;margin:0 0 20px">Épreuves statiques</h3>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SpecList" onLight="true" items="{{ statiques }}" hint-size="100%,260px"></x-import>
@@ -169,17 +188,17 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#00062E;padding:0 0 96px">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:64px;align-items:center">
+<section style="background:#00062E;padding:0 0 clamp(56px,9vw,96px)">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:center">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" eyebrow="La saison" title="Le rythme d'une année" subtitle="Les jalons passés et les prochaines sorties de l'écurie." hint-size="100%,190px"></x-import>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Timeline" items="{{ jalons }}" style="justify-self:center;width:100%;max-width:460px" hint-size="100%,420px"</x-import>
 </div>
 </section>
 
-<section style="background:#FFFEF6;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#FFFEF6;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" onLight="true" eyebrow="Nous rejoindre" title="Entrer dans l'écurie" subtitle="Ouvert à tous les étudiants de l'UTC, sans prérequis technique." hint-size="100%,170px"></x-import>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:64px;align-items:center">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:center">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.StepList" onLight="true" steps="{{ stepsAssoc }}" hint-size="100%,320px"></x-import>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PhotoFrame" src="assets/photos/equipe-3.jpg" alt="L'équipe à l'atelier" ratio="4/3" radius="28px" hint-size="100%,320px"></x-import>
 </div>
@@ -188,10 +207,10 @@ a:hover{color:#D19C00}
 
 <section style="position:relative;background:#0A1140;overflow:hidden">
 <span style="display:block;height:3px;background:linear-gradient(to right,#F6B600 0 55%,#C80000 55% 100%)"></span>
-<div style="position:relative;max-width:1160px;margin:0 auto;padding:96px 28px;text-align:center">
+<div style="position:relative;max-width:1160px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,28px);text-align:center">
 <div style="max-width:40rem;margin:0 auto">
 <div style="display:flex;justify-content:center;margin-bottom:20px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Eyebrow" hint-size="160px,20px">Partenariat</x-import></div>
-<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.75rem,3.2vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Une écurie, ça se finance</h2>
+<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.375rem,5vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Une écurie, ça se finance</h2>
 <p style="font-family:'Montserrat',system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;color:rgba(255,254,246,0.7);margin:0 0 40px;text-wrap:pretty">Entreprises comme particuliers peuvent soutenir l'écurie. Financement, pièces, matériaux, logiciels : tout part dans la voiture.</p>
 <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Button" variant="primary" size="lg" href="#soutenir" hint-size="200px,54px">Nous soutenir</x-import>
@@ -206,16 +225,16 @@ a:hover{color:#D19C00}
 <div>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PageHero" eyebrow="L'équipe" title="Trente étudiants." accent="Une écurie." subtitle="Des ingénieurs en devenir issus de toutes les promotions et filières de l'UTC, de BAC+0 à BAC+5, répartis en sept pôles autour d'une même voiture." stats="{{ statsEquipe }}" hint-size="100%,500px"></x-import>
 
-<section style="background:#00062E;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#00062E;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" eyebrow="Organisation technique" title="Sept pôles. Une voiture." hint-size="100%,130px"></x-import>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PoleAccordion" poles="{{ poles }}" default-open="{{ n0 }}" hint-size="100%,560px"></x-import>
 </div>
 </section>
 
 <sc-if value="{{ showBureau }}">
-<section style="background:#FFFEF6;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#FFFEF6;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" onLight="true" eyebrow="Bureau" title="Le noyau dur" subtitle="Noms et photos à fournir par l'écurie — les cadres indiquent le plan attendu." hint-size="100%,170px"></x-import>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:24px">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.MemberCard" onLight="true" name="À compléter" role="Président" pole="LAS" hint-size="100%,300px"></x-import>
@@ -227,8 +246,8 @@ a:hover{color:#D19C00}
 </section>
 </sc-if>
 
-<section style="background:#00062E;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:64px;align-items:center">
+<section style="background:#00062E;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:center">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PhotoFrame" src="assets/photos/equipe-2.jpg" alt="L'équipe au complet" ratio="4/3" radius="28px" hint-size="100%,340px"></x-import>
 <div>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" eyebrow="Recrutement" title="Rejoindre l'écurie" subtitle="Aucun prérequis : seulement l'envie de mettre les mains dans la voiture." hint-size="100%,190px"></x-import>
@@ -242,10 +261,10 @@ a:hover{color:#D19C00}
 
 <section style="position:relative;background:#0A1140;overflow:hidden">
 <span style="display:block;height:3px;background:linear-gradient(to right,#F6B600 0 55%,#C80000 55% 100%)"></span>
-<div style="position:relative;max-width:1160px;margin:0 auto;padding:96px 28px;text-align:center">
+<div style="position:relative;max-width:1160px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,28px);text-align:center">
 <div style="max-width:40rem;margin:0 auto">
 <div style="display:flex;justify-content:center;margin-bottom:20px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Eyebrow" hint-size="160px,20px">Partenariat</x-import></div>
-<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.75rem,3.2vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Vous voulez nous aider ?</h2>
+<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.375rem,5vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Vous voulez nous aider ?</h2>
 <p style="font-family:'Montserrat',system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;color:rgba(255,254,246,0.7);margin:0 0 40px">Les dons de tous les niveaux sont bienvenus, du particulier à l'entreprise.</p>
 <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Button" variant="primary" size="lg" href="#soutenir" hint-size="200px,54px">Nous soutenir</x-import>
@@ -260,14 +279,14 @@ a:hover{color:#D19C00}
 <div>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PageHero" eyebrow="La monoplace" title="FS01" accent="#86" subtitle="Notre monoplace thermique, en piste. Moteur de Honda CBR600RR, 117 chevaux, six rapports." actions="{{ actionsMonoplace }}" hint-size="100%,470px"></x-import>
 
-<section style="background:#00062E;padding:0 0 96px">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#00062E;padding:0 0 clamp(56px,9vw,96px)">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PhotoFrame" src="assets/photos/fs01-avant-gauche-soleil.png" alt="La FS01 trois-quarts avant gauche" ratio="21/9" hint-size="100%,420px"></x-import>
 </div>
 </section>
 
-<section id="fiche" style="background:#FFFEF6;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:64px;align-items:start">
+<section id="fiche" style="background:#FFFEF6;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:start">
 <div>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" onLight="true" eyebrow="Fiche technique" title="FS01" hint-size="100%,110px"></x-import>
 <div style="margin:0 0 24px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Tag" tone="thermique" onLight="true" hint-size="130px,28px">Thermique</x-import></div>
@@ -280,8 +299,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#00062E;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#00062E;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" align="center" eyebrow="Conception" title="Ce que l'équipe fabrique" hint-size="100%,140px"></x-import>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:24px;align-items:start">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.IconCard" icon="wind" title="Aéro" hint-size="100%,210px">Ailerons, diffuseur et carrosserie dessinés et fabriqués à l'atelier.</x-import>
@@ -292,8 +311,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#FFFEF6;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:64px;align-items:center">
+<section style="background:#FFFEF6;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:center">
 <div>
 <div style="margin:0 0 20px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Tag" tone="electrique" onLight="true" hint-size="130px,28px">Électrique</x-import></div>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" onLight="true" eyebrow="Prochain projet" title="FS02 — la monoplace électrique" subtitle="Notre première monoplace électrique est en développement à l'atelier : chaîne de traction, électronique de puissance et pack batterie." hint-size="100%,220px"></x-import>
@@ -305,10 +324,10 @@ a:hover{color:#D19C00}
 
 <section style="position:relative;background:#0A1140;overflow:hidden">
 <span style="display:block;height:3px;background:linear-gradient(to right,#F6B600 0 55%,#C80000 55% 100%)"></span>
-<div style="position:relative;max-width:1160px;margin:0 auto;padding:96px 28px;text-align:center">
+<div style="position:relative;max-width:1160px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,28px);text-align:center">
 <div style="max-width:40rem;margin:0 auto">
 <div style="display:flex;justify-content:center;margin-bottom:20px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Eyebrow" hint-size="160px,20px">Partenariat</x-import></div>
-<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.75rem,3.2vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Cette voiture roule grâce à ses partenaires</h2>
+<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.375rem,5vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Cette voiture roule grâce à ses partenaires</h2>
 <p style="font-family:'Montserrat',system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;color:rgba(255,254,246,0.7);margin:0 0 40px;text-wrap:pretty">Pièces, matériaux, logiciels ou soutien financier : tout part directement dans la monoplace.</p>
 <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Button" variant="primary" size="lg" href="#soutenir" hint-size="200px,54px">Nous soutenir</x-import>
@@ -325,13 +344,13 @@ a:hover{color:#D19C00}
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PageHero" eyebrow="Actualités" title="L'écurie" accent="en direct." subtitle="Roulages, compétitions, avancées à l'atelier. Deux publications sont en ligne — les suivantes suivront au fil de la saison." hint-size="100%,420px"></x-import>
 
 <div style="position:sticky;top:72px;z-index:100;background:rgba(0,6,46,0.9);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-top:1.5px solid rgba(255,254,246,0.12);border-bottom:1.5px solid rgba(255,254,246,0.12);padding:16px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.FilterBar" options="{{ filtres }}" value="{{ filtre }}" onChange="{{ setFiltre }}" hint-size="100%,40px"></x-import>
 </div>
 </div>
 
-<section style="background:#FFFEF6;padding:96px 0 80px">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#FFFEF6;padding:clamp(56px,9vw,96px) 0 clamp(48px,7vw,80px)">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:24px;align-items:start">
 <sc-if value="{{ showRoulage }}" hint-placeholder-val="{{ true }}">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.NewsCard" onLight="true" date="Juin 2026" tag="Roulage" tag-tone="thermique" title="Roulage à Valéo" excerpt="Roulage et test de la monoplace sur l'anneau de Valéo." photo="assets/photos/equipe-valeo.jpg" photo-alt="L'équipe et la FS01 devant le siège Valéo" hint-size="100%,420px"></x-import>
@@ -343,8 +362,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#FFFEF6;padding:0 0 96px">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;border-top:1.5px solid rgba(0,6,46,0.06);padding-top:80px">
+<section style="background:#FFFEF6;padding:0 0 clamp(56px,9vw,96px)">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);border-top:1.5px solid rgba(0,6,46,0.06);padding-top:clamp(48px,7vw,80px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" onLight="true" eyebrow="La saison" title="Les jalons" hint-size="100%,130px"></x-import>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Timeline" onLight="true" items="{{ jalons }}" hint-size="100%,420px"></x-import>
 </div>
@@ -352,10 +371,10 @@ a:hover{color:#D19C00}
 
 <section style="position:relative;background:#0A1140;overflow:hidden">
 <span style="display:block;height:3px;background:linear-gradient(to right,#F6B600 0 55%,#C80000 55% 100%)"></span>
-<div style="position:relative;max-width:1160px;margin:0 auto;padding:96px 28px;text-align:center">
+<div style="position:relative;max-width:1160px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,28px);text-align:center">
 <div style="max-width:40rem;margin:0 auto">
 <div style="display:flex;justify-content:center;margin-bottom:20px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Eyebrow" hint-size="160px,20px">Partenariat</x-import></div>
-<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.75rem,3.2vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Suivre l'écurie, c'est bien. La soutenir, c'est mieux.</h2>
+<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.375rem,5vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 20px">Suivre l'écurie, c'est bien. La soutenir, c'est mieux.</h2>
 <p style="font-family:'Montserrat',system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;color:rgba(255,254,246,0.7);margin:0 0 40px">Les dons de tous les niveaux sont bienvenus, du particulier à l'entreprise.</p>
 <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Button" variant="primary" size="lg" href="#soutenir" hint-size="200px,54px">Nous soutenir</x-import>
@@ -368,12 +387,12 @@ a:hover{color:#D19C00}
 
 <sc-if value="{{ isSoutenir }}">
 <div>
-<header style="position:relative;padding:152px 0 96px;overflow:hidden;background:#00062E">
+<header style="position:relative;padding:clamp(104px,20vw,152px) 0 clamp(56px,9vw,96px);overflow:hidden;background:#00062E">
 <span style="position:absolute;top:-140px;right:-120px;width:520px;height:520px;background:radial-gradient(circle,rgba(246,182,0,0.14) 0%,transparent 70%);pointer-events:none"></span>
-<div style="position:relative;max-width:1160px;margin:0 auto;padding:0 28px">
+<div style="position:relative;max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <div style="max-width:44rem">
 <div style="margin-bottom:24px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Eyebrow" hint-size="200px,20px">Nous soutenir</x-import></div>
-<h1 style="font-family:'Ethnocentric','Arial Black',sans-serif;font-size:clamp(2.25rem,5vw,4rem);line-height:1.06;text-transform:uppercase;color:#FFFEF6;margin:0">Votre logo.<br><span style="color:#F6B600">Notre piste.</span></h1>
+<h1 style="font-family:'Ethnocentric','Arial Black',sans-serif;font-size:clamp(1.75rem,7vw,4rem);line-height:1.06;text-transform:uppercase;color:#FFFEF6;margin:0">Votre logo.<br><span style="color:#F6B600">Notre piste.</span></h1>
 <div style="margin:28px 0;width:180px;height:3px;border-radius:9999px;background:linear-gradient(to right,#F6B600 0 55%,#C80000 55% 100%)"></div>
 <p style="font-family:'Montserrat',system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;color:rgba(255,254,246,0.7);max-width:36rem;margin:0;text-wrap:pretty">Formul'UT roule grâce à ses partenaires. Les dons de tous les niveaux sont bienvenus : l'emplacement de votre logo sur la monoplace suit votre engagement.</p>
 <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:40px">
@@ -384,8 +403,8 @@ a:hover{color:#D19C00}
 </div>
 </header>
 
-<section style="background:#FFFEF6;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#FFFEF6;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" align="center" onLight="true" eyebrow="Pourquoi nous soutenir" title="Ce que votre soutien apporte" subtitle="À l'écurie, tout part dans la voiture. À vous, une visibilité auprès des futurs ingénieurs et sur les circuits." hint-size="100%,190px"></x-import>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:24px;align-items:start">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.IconCard" onLight="true" icon="target" title="Visibilité en piste" hint-size="100%,230px">Votre logo sur la monoplace, présente en compétition face aux autres écoles d'ingénieurs.</x-import>
@@ -395,8 +414,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#00062E;padding:96px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:64px;align-items:center">
+<section style="background:#00062E;padding:clamp(56px,9vw,96px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:center">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.PhotoFrame" src="assets/photos/magny-cours-pilote.jpg" alt="Les logos des partenaires sur le flanc de la FS01, Magny-Cours" ratio="4/3" radius="28px" hint-size="100%,340px"></x-import>
 <div>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" eyebrow="Emplacement du logo" title="Votre logo sur la voiture" subtitle="Il n'y a pas de grille tarifaire. L'emplacement et la taille de votre logo sur la monoplace sont fonction de votre engagement — on en discute ensemble." hint-size="100%,230px"></x-import>
@@ -413,8 +432,8 @@ a:hover{color:#D19C00}
 </div>
 </section>
 
-<section style="background:#FFFEF6;padding:80px 0">
-<div style="max-width:1160px;margin:0 auto;padding:0 28px">
+<section style="background:#FFFEF6;padding:clamp(48px,7vw,80px) 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,28px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SectionHeader" align="center" onLight="true" eyebrow="Partenaires actuels" title="Ils nous font déjà confiance" hint-size="100%,140px"></x-import>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:12px">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.SponsorLogoCard" onLight="true" name="Poclain Hydraulics" src="assets/partenaires/mur/poclain-hydraulics.png" hint-size="100%,96px"></x-import>
@@ -444,10 +463,10 @@ a:hover{color:#D19C00}
 
 <section id="formulaire" style="position:relative;background:#0A1140">
 <span style="display:block;height:3px;background:linear-gradient(to right,#F6B600 0 55%,#C80000 55% 100%)"></span>
-<div style="max-width:1160px;margin:0 auto;padding:96px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:64px;align-items:start">
+<div style="max-width:1160px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,28px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:start">
 <div>
 <div style="margin-bottom:20px"><x-import component-from-global-scope="FormulUTDesignSystem_06d048.Eyebrow" hint-size="160px,20px">Nous écrire</x-import></div>
-<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.75rem,3.2vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 16px">Parlons de votre partenariat</h2>
+<h2 style="font-family:'Horizon','Arial Narrow',sans-serif;font-size:clamp(1.375rem,5vw,2.5rem);line-height:1.2;letter-spacing:0.01em;text-transform:uppercase;color:#FFFEF6;margin:0 0 16px">Parlons de votre partenariat</h2>
 <p style="font-family:'Montserrat',system-ui,sans-serif;font-size:1.0625rem;line-height:1.7;color:rgba(255,254,246,0.7);margin:0 0 40px">Écrivez-nous en français ou en anglais.</p>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.StepList" steps="{{ stepsSoutenir }}" hint-size="100%,300px"></x-import>
 <div style="margin-top:40px;padding-top:32px;border-top:1.5px solid rgba(255,254,246,0.12);display:flex;flex-direction:column;gap:10px">
@@ -455,7 +474,7 @@ a:hover{color:#D19C00}
 <span style="font-family:'Montserrat',system-ui,sans-serif;font-size:0.875rem;color:#8B93B8">UTC, Compiègne</span>
 </div>
 </div>
-<form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:16px;background:#00062E;border:1.5px solid rgba(255,254,246,0.12);border-radius:28px;padding:32px">
+<form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:16px;background:#00062E;border:1.5px solid rgba(255,254,246,0.12);border-radius:28px;padding:clamp(20px,5vw,32px)">
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Field" label="Nom / entreprise" name="nom" placeholder="Votre nom ou votre société" required="true" value="{{ fNom }}" onChange="{{ setNom }}" hint-size="100%,74px"></x-import>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Field" label="E-mail" name="email" type="email" placeholder="vous@entreprise.fr" required="true" value="{{ fEmail }}" onChange="{{ setEmail }}" hint-size="100%,74px"></x-import>
 <x-import component-from-global-scope="FormulUTDesignSystem_06d048.Field" label="Votre message" name="message" as="textarea" rows="{{ n5 }}" placeholder="Dites-nous ce que vous cherchez et ce que vous pouvez apporter." required="true" value="{{ fMessage }}" onChange="{{ setMessage }}" hint-size="100%,190px"></x-import>
