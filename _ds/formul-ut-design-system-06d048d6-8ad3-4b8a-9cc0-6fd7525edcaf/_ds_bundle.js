@@ -1917,7 +1917,7 @@ function SiteFooter({
       fontSize: "var(--text-caption)",
       color: "var(--navy-400)"
     }
-  }, /*#__PURE__*/React.createElement("p", null, "\xA9 2026 Formul'UT \u2014 Association loi 1901"), /*#__PURE__*/React.createElement("p", null, "Universit\xE9 de Technologie de Compi\xE8gne"))));
+  }, /*#__PURE__*/React.createElement("p", null, "\xA9 2026 Formul'UT"), /*#__PURE__*/React.createElement("p", null, "Universit\xE9 de Technologie de Compi\xE8gne"))));
 }
 function FooterLink({
   href,
